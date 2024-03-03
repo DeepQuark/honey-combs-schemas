@@ -1,0 +1,197 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Honey Combs",
+	"version": "0.1",
+	"type": "object",
+	"properties": {
+		"meta": {
+			"type": "object",
+			"properties": {
+				"date": {
+					"type": "string"
+				},
+				"day_name": {
+					"type": "string"
+				},
+				"file_download_url": {
+					"type": "string"
+				},
+				"tick_definition": {
+					"type": "object",
+					"properties": {
+						"description": {
+							"type": "string"
+						},
+						"unit_of_time": {
+							"type": "string"
+						},
+						"sampling_rate": {
+							"type": "number"
+						}
+					},
+					"required": [
+						"description",
+						"unit_of_time",
+						"sampling_rate"
+					]
+				},
+				"analyses": {
+					"type": "object",
+					"properties": {
+						"backtesting_technicals": {
+							"type": "object",
+							"properties": {
+								"methodology_description": {
+									"type": "string"
+								},
+								"outcome_description": {
+									"type": "string"
+								},
+								"moving_averages": {
+									"type": "array",
+									"items": {
+										"type": "number"
+									}
+								},
+								"delta": {
+									"type": "number"
+								},
+								"performance_periods": {
+									"type": "array",
+									"items": {
+										"type": "number"
+									}
+								}
+							},
+							"required": [
+								"methodology_description",
+								"outcome_description",
+								"moving_averages",
+								"delta",
+								"performance_periods"
+							]
+						}
+					},
+					"required": [
+						"backtesting_technicals"
+					]
+				}
+			},
+			"required": [
+				"date",
+				"day_name",
+				"file_download_url",
+				"tick_definition",
+				"analyses"
+			]
+		},
+		"stocks": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"meta": {
+						"type": "object",
+						"properties": {
+							"symbol": {
+								"type": "string"
+							},
+							"company": {
+								"type": "string"
+							},
+							"generated_timestamp": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"symbol",
+							"company",
+							"generated_timestamp"
+						]
+					},
+					"last_tick_info": {
+						"type": "object",
+						"properties": {
+							"date": {
+								"type": "string"
+							},
+							"day_name": {
+								"type": "string"
+							},
+							"open_price": {
+								"type": "number"
+							},
+							"high_price": {
+								"type": "number"
+							},
+							"low_price": {
+								"type": "number"
+							},
+							"close_price": {
+								"type": "number"
+							}
+						},
+						"required": [
+							"date",
+							"day_name",
+							"open_price",
+							"high_price",
+							"low_price",
+							"close_price"
+						]
+					},
+					"analyses": {
+						"type": "object",
+						"properties": {
+							"backtesting_technicals": {
+								"type": "object",
+								"properties": {
+									"matching_ticks_time_signatures": {
+										"type": "array",
+										"items": {
+											"type": "string"
+										}
+									},
+									"predictions": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"prediction_horizon": {
+													"type": "number"
+												},
+												"change": {
+													"type": "number"
+												}
+											},
+											"required": [
+												"prediction_horizon",
+												"change"
+											]
+										}
+									}
+								},
+								"required": [
+									"matching_ticks_time_signatures",
+									"predictions"
+								]
+							}
+						},
+						"required": [
+							"backtesting_technicals"
+						]
+					}
+				},
+				"required": [
+					"meta",
+					"last_tick_info",
+					"analyses"
+				]
+			}
+		}
+	},
+	"required": [
+		"meta",
+		"stocks"
+	]
+}
